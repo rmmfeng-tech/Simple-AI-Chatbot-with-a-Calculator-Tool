@@ -1,16 +1,16 @@
 # Simple AI Chatbot with a Calculator Tool
 
-## pre-requirements
+## Pre-requirements
 
-### 0 - python
+### 0 - Python
 
 You must have Python installed in you machine and some previous knowledge on Python
 to make this code work
 
-my Python version is 3.12.4
+My Python Version is 3.12.4
 
 ---
-### 1 - ollama installed
+### 1 - Ollama installed
 
 to make this script work you have to install the ollama on your machine:
 
@@ -22,7 +22,7 @@ the steps are :
 **important:**
 Every time you run this scripts, Ollama must be running
 ---
-### 2 - download the model you want to use
+### 2 - Download the model you want to use
 
 after you have ollama fully installed you must download a model:
 
@@ -50,7 +50,7 @@ really heavy LLM's you can use the following youtube guide to change the
 download path
 https://www.youtube.com/watch?v=uj1VnDPR9xo
 ---
-### 3 - virtual environment
+### 3 - Virtual environment
 
 create a virtual environment to download the main libraries to run this code
 
@@ -73,7 +73,7 @@ virtual environment active, run the script.
 There are two options for running it, with gradio interface and without gradio 
 interface.
 
-### 1 gradio interface
+### 1 Gradio interface
 when using this option the script will generate an URL, copy it and past it into
 any browser to start talking to the model.
 ---
@@ -87,18 +87,18 @@ since this model is running localy in your machine the results will be slower
 than if you run a frontier model from their service directly. this is specially
 true the first time you are using the model that day.
 
-## prompts modification
+## Prompts modification
 
 if you wanna check the system prompt that the code is running go in the 
 prompt.txt file and make sure everything is how you would want it.
 ---
 
-# what was, my implementation logic
+# What was, my implementation logic
 
 I mainly used the knowled from a course i took, and my knowled of prompt 
 engineering to create a straightfoward solution.
 
-## for the prompt
+## For the prompt
 
 I focused on a simple, direct, and easy-to-read prompt. I like to use XML tags
 since they help visualize the prompt and also is a good way to separate content,
@@ -123,9 +123,9 @@ consider the waiting time for a local model takes to start talking plus the
 waiting time for the full response, you would wait a lot for the answer, and I 
 considered this a bad user experience and decided to use the streaming approach.
 
-# what did i learn and what i would make diferent with extra time
+# What did i learn and what i would make diferent with extra time
 
-## what i learned
+## What i learned
 
 I learn a little better how to use streaming and how to make the tool usage on ollama 
 to work. I used the docummentation of ollama,I used the documentation for Ollama,
