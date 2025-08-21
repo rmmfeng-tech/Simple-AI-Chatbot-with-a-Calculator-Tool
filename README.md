@@ -108,7 +108,7 @@ and Cursor is considered one of the best AI-powered coding tools.
 reference to my cursor claim
 https://byteatatime.dev/posts/cursor-prompt-analysis/?utm_source=tldrnewsletter
 
-## for the script itself
+## For the script itself
 
 I decided to go with ollama since I use it with some regulatiry, but i could do it
 with Open AI models too, actually would be a little easier since the course i made
