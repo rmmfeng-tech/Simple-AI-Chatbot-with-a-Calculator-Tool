@@ -1,5 +1,19 @@
 import json
 
+import os
+
+import pptx
+
+from pathlib import Path
+
+from pptx.util import Cm
+
+from pptx.dml.color import RGBColor 
+
+from pptx.enum.shapes import MSO_SHAPE, MSO_CONNECTOR_TYPE
+
+from pptx.enum.text import PP_ALIGN
+
 def handle_tool_call(message):
     name = message[0].function.name
     if name == 'calculator':
@@ -24,6 +38,18 @@ def handle_tool_call(message):
         arguments = message[0].function.arguments
         character = arguments['characters']
         result = characters_count(character)
+        response = {
+            "role": "tool",
+            "content": json.dumps({"result": result}),
+        }
+    elif name == 'simple_fluxogram':
+        arguments = message[0].function.arguments
+        list_of_tasks = arguments['list_of_tasks']
+        if arguments['file_name']:
+            file_name = arguments['file_name']
+            result = simple_fluxogram(list_of_tasks,file_name)
+        else:
+            result = simple_fluxogram(list_of_tasks)
         response = {
             "role": "tool",
             "content": json.dumps({"result": result}),
@@ -116,6 +142,68 @@ def characters_count(characters):
     """
     return len(characters)
 
+def simple_fluxogram(list_of_tasks,file_name="fluxogram"):
+    """
+    # simple fluxogram creator
+    ----------
+    ## Paramaters
+    ----------
+    list_of_tasks : list
+        list of tasks in order of execution
+    file_name : str
+        optinal name for the archive, default is fluxogram
+
+    ## Example of usage
+        list_of_tasks = [fix the screw, polish the edges]
+        simple_fluxogram(list_of_tasks) 
+        file = file_name+".pptx"
+        template.save(file)
+        os.startfile(file)
+        os.startfile(os.path.dirname(file))
+    """
+    division = Cm(3)
+    shape_height = Cm(5)
+    shape_width = Cm(10)
+    left = Cm(5)  
+    top = Cm(1)   
+    template = pptx.Presentation()
+    slide_layout = template.slide_layouts[6]
+    number_of_shapes = len(list_of_tasks)
+    i = ((shape_height + division) * number_of_shapes) + 2*top - division
+    slide = template.slides.add_slide(slide_layout)   
+    template.slide_width = Cm(20)
+    template.slide_height = i
+    for item in list_of_tasks:
+        retangle = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,left,top,shape_width,shape_height)
+        text = retangle.text_frame 
+        text.text = str(item)
+        text.paragraphs[0].alignment = PP_ALIGN.CENTER
+        retangle.fill.solid()
+        retangle.fill.fore_color.rgb = RGBColor(79,129,189)
+        if item !=list_of_tasks[-1]:
+            arrow = slide.shapes.add_shape(MSO_SHAPE.DOWN_ARROW,Cm(9.25),top+shape_height,division*.5,division)
+            arrow.fill.solid()
+            arrow.fill.fore_color.rgb = RGBColor(192,80,77)
+        top += shape_height + division
+    file = file_name+".pptx"
+    template.save(file)
+    os.startfile(file)
+    os.startfile(os.path.dirname(file))
+
+    return 'pptx file created'
+
+simple_fluxogram_function = {
+    "name": "simple_fluxogram",
+    "description": "Creates a simple fluxogram in a pptx archive (only works on windows).",
+    "parameters": {
+        "type": "object",
+        "properties": {
+                        "list_of_tasks" : {"type": "list", "description": "list of tasks in order of execution"},
+            "file_name" : {"type": "string", "description": "optinal name for the archive, default is fluxogram"}
+        },
+        "required": ["list_of_tasks"],
+    },
+}
 
 characters_count_function = {
     "name": "characters_count",
@@ -165,5 +253,6 @@ calculator_function = {
 tools = [
     {"type": "function", "function": calculator_function},
     {"type": "function", "function": word_counter_function},
-    {"type": "function", "function": characters_count_function}
+    {"type": "function", "function": characters_count_function},
+    {"type": "function", "function": simple_fluxogram_function}
     ]
