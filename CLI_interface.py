@@ -43,7 +43,6 @@ while True:
     for chunk in response:
         # if there is a toolcall this part of the code will peak it and solve it
         if chunk.message.tool_calls:
-            print(chunk.message.tool_calls)
             message = chunk.message.tool_calls
             response = handle_tool_call(message)
             messages.append(response)

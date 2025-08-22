@@ -30,7 +30,6 @@ def handle_tool_call(message):
         }
         return response
         
-
 def calculator(operation:str,a:float,b:float):
     """
     # simple calculator tool
