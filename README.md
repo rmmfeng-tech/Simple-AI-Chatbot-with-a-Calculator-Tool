@@ -49,18 +49,18 @@ consider the waiting time for a local model takes to start talking plus the
 waiting time for the full response, you would wait a lot for the answer, and I 
 considered this a bad user experience and decided to use the streaming approach.
 
-## 4 - What did i learn and what i would make diferent with extra time
+## 4 - What did I learn and what I would make diferent with extra time
 
-### 4.1 - What i learned
+### 4.1 - What I learned
 
 I learn a little better how to use streaming and how to make the tool usage on ollama 
 to work. I used the docummentation of ollama,I used the documentation for Ollama,
 ChatGPT, and the knowledge from the course I took to guide me on this task.
 
-### 4.2 - What would i make diferent?
+### 4.2 - What would I make diferent?
 
 * The main thing I would change is to make the calculator more precise. As is 
 the calculator is pretty simple, it can only calculate operations with 2 numbers.
 * I would consider trying to implement MCP (model context protocol) to this project
-I tried once but i couldn't make it work with ollama yet. with that i could add
+I tried once but I couldn't make it work with ollama yet. with that I could add
 tools to it pretty fast.
