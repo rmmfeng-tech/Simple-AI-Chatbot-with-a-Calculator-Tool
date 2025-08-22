@@ -2,7 +2,7 @@ import json
 
 # grabs the arguments of the toolcall and activate the function
 def handle_calculator_call(message):
-    arguments = arguments = message[0].function.arguments
+    arguments = message[0].function.arguments
     operation,a,b = arguments.values()
     result = calculator(operation,a,b)
     response = {
@@ -83,5 +83,6 @@ calculator_function = {
         "required": ['operation','a','b'],
     }
 }
+
 
 tools = [{"type": "function", "function": calculator_function}]
