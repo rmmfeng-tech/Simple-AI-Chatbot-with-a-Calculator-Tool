@@ -3,7 +3,7 @@
 ## 1 - Prerequisites
 
 Before getting started, make sure you have:  
-- Python 3.12+ installed  
+- Python 3.12+ installed  https://www.python.org/downloads
 - Ollama installed and configured: [Ollama Docs](https://github.com/ollama/ollama)
   - gpt-oss:20b model downloaded
 - Project dependencies installed:  
@@ -15,11 +15,11 @@ pip install -r requirements.txt
 ## 2 - How it works
 
 ### 2.1 - Gradio interface
-when using this option the script will generate an URL, copy it and past it into
+When using this option the script will generate an URL, copy it and past it into
 any browser to start talking to the model.
 
 ### 2.2 - CLI interface
-when using this option as soon as the script starts you will be able to talk to
+When using this option as soon as the script starts you will be able to talk to
 the model
 
 ## 3 - What was, my implementation logic
@@ -38,7 +38,7 @@ https://byteatatime.dev/posts/cursor-prompt-analysis/?utm_source=tldrnewsletter
 
 I decided to go with ollama since I use it with some regulatiry, but i could do it
 with Open AI models too, actually would be a little easier since the course i made
-uses Open AI models in their code. however i prefer a little challenge.
+uses Open AI models in their code. However i prefer a little challenge.
 
 My main focus was to make the chatbot work well in a CLI , and if i could
 make it work i would them go to a gradio interface, since most people prefer a
@@ -62,5 +62,5 @@ ChatGPT, and the knowledge from the course I took to guide me on this task.
 * The main thing I would change is to make the calculator more precise. As is 
 the calculator is pretty simple, it can only calculate operations with 2 numbers.
 * I would consider trying to implement MCP (model context protocol) to this project
-I tried once but I couldn't make it work with ollama yet. with that I could add
+I tried once but I couldn't make it work with ollama yet. With that I could add
 tools to it pretty fast.
