@@ -3,15 +3,16 @@
 ## 1 - Prerequisites
 
 Before getting started, make sure you have:  
-- **Python 3.12+** installed  
-- **Ollama** installed and configured: [Ollama Docs](https://github.com/ollama/ollama)  
+- Python 3.12+ installed  
+- Ollama installed and configured: [Ollama Docs](https://github.com/ollama/ollama)
+  - gpt-oss:20b model downloaded
 - Project dependencies installed:  
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 2 - How to use
+## 2 - How it works
 
 ### 2.1 - Gradio interface
 when using this option the script will generate an URL, copy it and past it into
