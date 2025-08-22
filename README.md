@@ -1,6 +1,6 @@
 # Simple AI Chatbot with a Calculator Tool
 
-## 1 - prerequisites
+## 1 - Prerequisites
 
 Before getting started, make sure you have:  
 - **Python 3.12+** installed  
@@ -11,7 +11,7 @@ Before getting started, make sure you have:
 pip install -r requirements.txt
 ```
 
-## 2 - how to use
+## 2 - How to use
 
 ### 2.1 - Gradio interface
 when using this option the script will generate an URL, copy it and past it into
