@@ -1,4 +1,4 @@
-from tools import handle_calculator_call,tools
+from tools import handle_tool_call,tools
 
 from ollama import chat,ChatResponse
 
@@ -42,9 +42,10 @@ while True:
 
     for chunk in response:
         # if there is a toolcall this part of the code will peak it and solve it
-        if chunk.message.tool_calls: 
+        if chunk.message.tool_calls:
+            print(chunk.message.tool_calls)
             message = chunk.message.tool_calls
-            response = handle_calculator_call(message)
+            response = handle_tool_call(message)
             messages.append(response)
             response = chat(model= 'gpt-oss:20b',messages = messages,stream = True,)
             for chunk in response:

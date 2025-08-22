@@ -1,6 +1,6 @@
 import gradio as gr
 
-from tools import handle_calculator_call,tools
+from tools import handle_tool_call,tools
 
 from ollama import chat,ChatResponse
 
@@ -27,7 +27,7 @@ def chat_box(user_prompt,history):
         # if there is a toolcall this part of the code will peak it and solve it
         if chunk.message.tool_calls:
             message = chunk.message.tool_calls
-            new_stream = handle_calculator_call(message)
+            new_stream = handle_tool_call(message)
             messages.append(new_stream)
             new_stream = chat(model= 'gpt-oss:20b',messages = messages,stream = True,)
             for chunk in new_stream:

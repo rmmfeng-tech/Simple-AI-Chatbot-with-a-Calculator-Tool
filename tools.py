@@ -1,15 +1,35 @@
 import json
 
-# grabs the arguments of the toolcall and activate the function
-def handle_calculator_call(message):
-    arguments = message[0].function.arguments
-    operation,a,b = arguments.values()
-    result = calculator(operation,a,b)
-    response = {
-        "role": "tool",
-        "content": json.dumps({"result": result}),
-    }
-    return response
+def handle_tool_call(message):
+    name = message[0].function.name
+    if name == 'calculator':
+        arguments = message[0].function.arguments
+        operation,a,b = arguments.values()
+        result = calculator(operation,a,b)
+        response = {
+            "role": "tool",
+            "content": json.dumps({"result": result}),
+        }
+        return response
+    elif name == 'word_counter':
+        arguments = message[0].function.arguments
+        text = arguments['text']
+        words = word_counter(text)
+        response = {
+            "role": "tool",
+            "content": json.dumps({"result": words}),
+        }
+        return response
+    elif name == 'characters_count':
+        arguments = message[0].function.arguments
+        character = arguments['characters']
+        result = characters_count(character)
+        response = {
+            "role": "tool",
+            "content": json.dumps({"result": result}),
+        }
+        return response
+        
 
 def calculator(operation:str,a:float,b:float):
     """
@@ -62,6 +82,65 @@ def calculator(operation:str,a:float,b:float):
         result = a^b
     return result
 
+def word_counter(text: str):
+    """
+    # simple word counter tool
+    ----------
+    ## Parameters
+    ----------
+    text : str
+        The text whose words you want to count.
+
+    ## Example of usage
+    ----------
+    word_counter('Hello world') 
+        words = 2
+        return len(words)
+    """
+    print(text)
+    words = text.split()
+    return len(words)
+
+def characters_count(characters):
+    """
+    # simple characters counter tool
+    ----------
+    ## Paramaters
+    ----------
+    characters : str 
+        The string whose characters you want to count.
+
+    ## Example of usage
+        count_characters('123456') 
+        characters = 6
+        return len(characters)
+    """
+    return len(characters)
+
+
+characters_count_function = {
+    "name": "characters_count",
+    "description": "Counts the number of characters in a given text.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "characters": {"type": "string", "description": "The string whose characters you want to count."}
+        },
+        "required": ["characters"],
+    },
+}
+# definition of the function in a dict so the AI knows how to use it
+word_counter_function = {
+    "name": "word_counter",
+    "description": "Counts the number of words in a given text.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "text": {"type": "string", "description": "The text whose words you want to count."}
+        },
+        "required": ["text"],
+    },
+}
 #definiton of the function in a dict so the AI know how to use it
 calculator_function = {
     "name": "calculator",
@@ -84,5 +163,8 @@ calculator_function = {
     }
 }
 
-
-tools = [{"type": "function", "function": calculator_function}]
+tools = [
+    {"type": "function", "function": calculator_function},
+    {"type": "function", "function": word_counter_function},
+    {"type": "function", "function": characters_count_function}
+    ]
