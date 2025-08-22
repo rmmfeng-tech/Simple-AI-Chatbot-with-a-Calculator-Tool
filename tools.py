@@ -1,6 +1,10 @@
-import json
-
 import os
+
+import sys
+
+import subprocess
+
+import json
 
 import pptx
 
@@ -185,10 +189,19 @@ def simple_fluxogram(list_of_tasks,file_name="fluxogram"):
             arrow.fill.solid()
             arrow.fill.fore_color.rgb = RGBColor(192,80,77)
         top += shape_height + division
+    
     file = file_name+".pptx"
+    folder = os.path.dirname(file)
     template.save(file)
-    os.startfile(file)
-    os.startfile(os.path.dirname(file))
+    if sys.platform == "win32":
+        os.startfile(file)
+        os.startfile(folder)
+    elif sys.platform == "darwin":
+        subprocess.run(["open", file])
+        subprocess.run(["open", folder])
+    else:
+        subprocess.run(["xdg-open", file])
+        subprocess.run(["xdg-open", folder])
 
     return 'pptx file created'
 
