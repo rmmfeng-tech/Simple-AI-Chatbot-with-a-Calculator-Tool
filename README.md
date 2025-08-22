@@ -3,7 +3,7 @@
 ## 1 - Prerequisites
 
 Before getting started, make sure you have:  
-- Python 3.12+ installed  https://www.python.org/downloads
+- Python 3.12+ installed: https://www.python.org/downloads
 - Ollama installed and configured: [Ollama Docs](https://github.com/ollama/ollama)
   - gpt-oss:20b model downloaded
 - Project dependencies installed:  
